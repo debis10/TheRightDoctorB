@@ -1,0 +1,119 @@
+<!-- Dashboard Statistics -->
+<div class="dashboard-stats">
+  <div class="stat-card">
+    <div class="stat-header">
+      <div class="stat-icon">👥</div>
+    </div>
+    <div class="stat-label">Total Users</div>
+    <div class="stat-value">{{ users.length }}</div>
+    <div class="stat-change">+12% from last month</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <div class="stat-icon">✅</div>
+    </div>
+    <div class="stat-label">Active Users</div>
+    <div class="stat-value">{{ users.length > 0 ? users.length - 1 : 0 }}</div>
+    <div class="stat-change">+8% from last month</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <div class="stat-icon">📈</div>
+    </div>
+    <div class="stat-label">New This Week</div>
+    <div class="stat-value">{{ users.length > 2 ? 3 : users.length }}</div>
+    <div class="stat-change">+25% from last week</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <div class="stat-icon">⏱️</div>
+    </div>
+    <div class="stat-label">Avg. Response Time</div>
+    <div class="stat-value">2.4h</div>
+    <div class="stat-change negative">-5% from last month</div>
+  </div>
+</div>
+
+<!-- User Management Section -->
+<div class="user-list-container">
+  <div class="section-header">
+    <div class="header-content">
+      <h2>User Management</h2>
+      <p class="section-subtitle">Manage and monitor all registered users</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary">
+        <span>📥</span>
+        Export
+      </button>
+      <button class="btn btn-primary" routerLink="/user/new">
+        <span>➕</span>
+        Add New User
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Mobile</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>
+            <span class="user-id">#{{ i + 1 }}</span>
+          </td>
+          <td>
+            <div class="user-cell">
+              <div class="user-avatar-small">{{ user.name.charAt(0).toUpperCase() }}</div>
+              <span class="user-name-text">{{ user.name }}</span>
+            </div>
+          </td>
+          <td>
+            <span class="age-text">{{ user.age }}</span>
+          </td>
+          <td>
+            <span class="gender-text">{{ user.gender }}</span>
+          </td>
+          <td>
+            <span class="mobile-text">{{ user.mobile }}</span>
+          </td>
+          <td>
+            <span class="status-badge status-active">Active</span>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button [routerLink]="['/user', user.id, 'edit']" class="btn-icon btn-icon-edit" title="Edit">
+                ✏️
+              </button>
+              <button (click)="onDelete(user.id!)" class="btn-icon btn-icon-delete" title="Delete">
+                🗑️
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="users.length === 0" class="empty-state">
+      <div class="empty-icon">📭</div>
+      <h3>No users found</h3>
+      <p>Get started by adding your first user</p>
+      <button class="btn btn-primary" routerLink="/user/new">
+        <span>➕</span>
+        Add User
+      </button>
+    </div>
+  </div>
+</div>

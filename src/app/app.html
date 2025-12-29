@@ -1,0 +1,64 @@
+<div class="app-container">
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar">
+    <div class="app-logo">
+      <h2>The<span>RightDoctor</span></h2>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/" class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/users" class="nav-item">
+        <span class="nav-icon">👥</span>
+        <span>Users</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">📋</span>
+        <span>Appointments</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">📄</span>
+        <span>Documents</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">📸</span>
+        <span>Reports</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <header class="app-header">
+      <div class="header-left">
+        <h1>Dashboard</h1>
+        <p class="header-subtitle">Welcome back! Here's what's happening today.</p>
+      </div>
+
+      <div class="header-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search patients, appointments...">
+        </div>
+
+        <div class="user-profile">
+          <div class="user-avatar">KA</div>
+          <div class="user-info">
+            <div class="user-name">Khanif Adlan</div>
+            <div class="user-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

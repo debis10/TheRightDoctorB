@@ -1,0 +1,53 @@
+<div class="user-edit-container">
+    <h2>{{ isEditMode ? 'Edit Person' : 'Add New Person' }}</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter full name" />
+            <div *ngIf="submitted && editForm.controls['name'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['name'].errors['required']">Name is required</div>
+                <div *ngIf="editForm.controls['name'].errors['minlength']">Name must be at least 2 characters</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age *</label>
+            <input type="number" id="age" formControlName="age" class="form-control" placeholder="Enter age" min="0"
+                max="150" />
+            <div *ngIf="submitted && editForm.controls['age'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['age'].errors['required']">Age is required</div>
+                <div *ngIf="editForm.controls['age'].errors['min']">Age cannot be negative</div>
+                <div *ngIf="editForm.controls['age'].errors['max']">Age cannot exceed 150</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender *</label>
+            <select id="gender" formControlName="gender" class="form-control">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <div *ngIf="submitted && editForm.controls['gender'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['gender'].errors['required']">Gender is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">Mobile Number *</label>
+            <input type="tel" id="mobile" formControlName="mobile" class="form-control" placeholder="+1234567890" />
+            <div *ngIf="submitted && editForm.controls['mobile'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['mobile'].errors['required']">Mobile number is required</div>
+                <div *ngIf="editForm.controls['mobile'].errors['pattern']">Please enter a valid mobile number</div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button [disabled]="loading" type="submit" class="btn btn-primary">
+                {{ loading ? 'Saving...' : (isEditMode ? 'Update' : 'Create') }}
+            </button>
+            <a routerLink="/users" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
